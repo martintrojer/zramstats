@@ -50,6 +50,7 @@ def main(args):
             "same_pages": int(d[5]),
             "pages_compacted": int(d[6]),
             "huge_pages": int(d[7]),
+            "compression_ratio": int(d[0]) / int(d[1]),
         }
 
     with open("/proc/swaps", "r") as f:
@@ -70,11 +71,6 @@ def main(args):
         else:
             h = v
         print(f"{k:18}{h}")
-
-    print(
-        "\ncompression ratio %.1f"
-        % (stats["orig_data_size"] / stats["compr_data_size"])
-    )
 
     if args.verbose:
         print(docs)
