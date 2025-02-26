@@ -35,7 +35,12 @@ def size(nbytes):
     return "%s %s" % (f, suffixes[i])
 
 
-def main(args):
+def main():
+    parser = argparse.ArgumentParser(prog="zramstats")
+    parser.add_argument("-v", "--verbose", action="store_true")
+    parser.add_argument("--json", action="store_true")
+    args = parser.parse_args()
+
     swaps = []
     stats = {}
 
@@ -84,8 +89,4 @@ def main(args):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(prog="zramstats")
-    parser.add_argument("-v", "--verbose", action="store_true")
-    parser.add_argument("--json", action="store_true")
-    args = parser.parse_args()
-    main(args)
+    main()
